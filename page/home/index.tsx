@@ -55,17 +55,19 @@ const Index = () => {
   );
 
   return (
-    <FlatList
-      data={movie}
-      keyExtractor={(item) => item.id.toString()}
-      renderItem={({ item }) => <MovieCard item={item} />}
-      horizontal
-      snapToInterval={ITEM_WIDTH}
-      decelerationRate="fast"
-      bounces={false}
-      showsHorizontalScrollIndicator={false}
-      contentContainerStyle={{ paddingHorizontal: ITEM_SPACING }}
-    />
+    <View>
+      <FlatList
+        data={movie}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => <MovieCard item={item} />}
+        horizontal
+        snapToInterval={ITEM_WIDTH}
+        decelerationRate="fast"
+        bounces={false}
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={{ paddingHorizontal: ITEM_SPACING }}
+      />
+    </View>
   );
 };
 
