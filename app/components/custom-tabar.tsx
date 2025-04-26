@@ -9,7 +9,7 @@ const CustomTabBar = ({
   navigation,
 }: BottomTabBarProps) => {
   return (
-    <View className=" p-0  m-0 dark:bg-[#1E1E1E]">
+    <View className=" p-0  m-0 h-[70px]  dark:bg-[#2D2D2D]">
       <View className=" flex-row h-[70px]   pt-3 pb-2  items-center  ">
         {state.routes.map((route, index) => {
           // const label =
@@ -54,18 +54,10 @@ const CustomTabBar = ({
                     : "person"
                 }
                 size={20}
-                color={isFocused ? "#ff5959" : "#999"}
+                color={isFocused ? "red" : "#999"}
               />
 
-              <Text style={{ color: isFocused ? "#ff5959" : "black" }}>
-                {/* {typeof label === "function"
-                ? label({
-                    focused: isFocused,
-                    color: isFocused ? "blue" : "gray",
-                    position: "below-icon",
-                    children: route.name,
-                  })
-                : label} */}
+              <Text style={{ color: isFocused ? "red" : "black" }}>
                 {route.name == "index" ? "home" : route.name}
               </Text>
             </Pressable>

@@ -9,21 +9,33 @@ import {
 } from "react-native";
 import React from "react";
 import { useColorScheme } from "nativewind";
-import { Feather } from "@expo/vector-icons";
+import { Feather, Ionicons } from "@expo/vector-icons";
 const { width } = Dimensions.get("window");
-const ITEM_WIDTH = width * 0.8;
+const ITEM_WIDTH = width * 0.75;
 
 const NavBar = () => {
   const { colorScheme, setColorScheme } = useColorScheme();
 
   return (
-    <View>
+    <View className="">
       <StatusBar
         barStyle={colorScheme === "dark" ? "light-content" : "dark-content"}
         backgroundColor={colorScheme === "dark" ? "black" : "white"}
       />
-      <View className=" flex-row w-full justify-between py-4  bg-white dark:bg-black px-5">
-        <TextInput className=" border" style={styles.input} />
+      <View className=" px-4 flex-row w-full items-center gap-1 justify-between py-4  bg-white dark:bg-black">
+        <View className=" items-center dark:bg-[#2D2D2D] dark:border-0 rounded-xl border border-gray-500 flex-row">
+          <Ionicons
+            name="search"
+            size={16}
+            className=" pl-3 pr-2  dark:!text-white "
+          />
+          <TextInput
+            autoFocus={false}
+            placeholder="Search"
+            className=" border-[0px] !outline-none dark:placeholder:text-white "
+            style={styles.input}
+          />
+        </View>
         <Pressable
           onPress={() =>
             setColorScheme(colorScheme === "dark" ? "light" : "dark")

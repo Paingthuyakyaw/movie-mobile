@@ -1,11 +1,15 @@
 import HomeScreen from "@/page/home";
 import { Link } from "expo-router";
-import { Text, View } from "react-native";
+import { Dimensions, ScrollView, Text, View } from "react-native";
 
 export default function Home() {
   return (
-    <View className=" h-screen bg-white dark:bg-black">
+    <ScrollView
+      style={{ flex: 1 }}
+      className="bg-white dark:bg-black"
+      // contentContainerStyle={{ minHeight: Dimensions.get("window").height }}
+    >
       <HomeScreen />
-    </View>
+    </ScrollView>
   );
 }
