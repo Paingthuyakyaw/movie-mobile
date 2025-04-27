@@ -1,17 +1,11 @@
-import {
-  Dimensions,
-  FlatList,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-} from "react-native";
+import { Dimensions, Text, View, Image } from "react-native";
 import React from "react";
 import { useNowPlaying } from "@/store/server/movie/queries";
-import { nowPlaying } from "@/store/server/movie/typed";
-import Carousel, { TAnimationStyle } from "react-native-reanimated-carousel";
+import Carousel from "react-native-reanimated-carousel";
 import { Ionicons } from "@expo/vector-icons";
 import Trending from "./trending";
+import LatestShow from "./popular";
+import { Link } from "expo-router";
 
 const { width } = Dimensions.get("window");
 const ITEM_WIDTH = width;
@@ -21,13 +15,13 @@ const Index = () => {
   const { data } = useNowPlaying();
 
   return (
-    <View>
+    <View className="">
       <Carousel
         width={width}
         height={200}
         autoPlay
         data={data?.results || []}
-        scrollAnimationDuration={1500}
+        scrollAnimationDuration={1000}
         renderItem={({ item }) => (
           <View className=" -mt-5 relative">
             <Image
@@ -43,13 +37,13 @@ const Index = () => {
                     {item.title}
                   </Text>
                   <View className=" text-white mt-2 flex-row gap-1 !items-center">
-                    <Text>
+                    <View>
                       <Ionicons
                         name="star"
                         size={12}
                         className=" !text-white"
                       />
-                    </Text>
+                    </View>
                     <Text className="  text-white">
                       {item.vote_average.toFixed(1)}
                     </Text>
@@ -57,11 +51,13 @@ const Index = () => {
                     <Text className=" text-white">{item.release_date}</Text>
                   </View>
                 </View>
-                <Ionicons
-                  name="play-circle"
-                  size={50}
-                  className=" !text-white"
-                />
+                <Link href={`/movie/${item.id}`}>
+                  <Ionicons
+                    name="play-circle"
+                    size={50}
+                    className=" !text-white"
+                  />
+                </Link>
               </View>
             </View>
           </View>
@@ -69,6 +65,7 @@ const Index = () => {
         mode="parallax"
       />
       <Trending />
+      <LatestShow />
     </View>
   );
 };

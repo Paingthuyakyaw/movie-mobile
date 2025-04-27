@@ -54,10 +54,18 @@ const CustomTabBar = ({
                     : "person"
                 }
                 size={20}
-                color={isFocused ? "red" : "#999"}
+                className={` ${
+                  isFocused
+                    ? " !text-red-500 "
+                    : " !text-gray-500 dark:!text-white"
+                } `}
               />
 
-              <Text style={{ color: isFocused ? "red" : "black" }}>
+              <Text
+                className={`${
+                  isFocused ? "!text-red-500" : " !text-black dark:!text-white"
+                }`}
+              >
                 {route.name == "index" ? "home" : route.name}
               </Text>
             </Pressable>

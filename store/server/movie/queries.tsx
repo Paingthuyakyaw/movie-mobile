@@ -1,6 +1,6 @@
 import { authJsonToken, axiosInstance } from "@/store";
 import { useQuery } from "@tanstack/react-query";
-import { NowPlayingProps, trendProps } from "./typed";
+import { NowPlayingProps, popularProps, trendProps } from "./typed";
 
 const nowPlaying = async (): Promise<NowPlayingProps> => {
   const { data } = await axiosInstance.get(`movie/now_playing`, {
@@ -28,5 +28,20 @@ export const useTrending = () => {
   return useQuery({
     queryKey: ["trending"],
     queryFn: () => trending(),
+  });
+};
+
+//latest
+const popular = async ({ type }: { type: string }): Promise<popularProps> => {
+  const { data } = await axiosInstance.get(`${type}/popular`, {
+    headers: authJsonToken(),
+  });
+  return data;
+};
+
+export const usePopular = ({ type }: { type: string }) => {
+  return useQuery({
+    queryKey: ["latest", type],
+    queryFn: () => popular({ type }),
   });
 };
